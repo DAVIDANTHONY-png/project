@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: rgb(214, 59, 59);
+            color: white;
+        }
+        h1{
+            font-size: 2.5rem;
+        }
+        input{
+            width: 300px;
+            height: 30px;
+            background-color: purple;
+            border-radius: 5px;
+        }
+        button{
+            width: 70px;
+            background-color: rgb(1, 1, 26);
+            color: white;
+            height: 35px;
+        }
+        i{
+           width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Palindrome Checker</h1>
+    <p>by David Anthony</p>
+    <input type="text" placeholder="Enter a string" id="text-input">
+    <button id="check-btn">Check</button><br><br>
+    <p><i id="result"></i></p>
+
+    <script>
+        const textContainer = document.getElementById("text-input");
+        const checkBtn = document.getElementById("check-btn");
+        const resultText = document.getElementById("result");
+
+        
+        function isPalindrome(str) {
+           
+            const cleanedStr = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+           
+            const reversedStr = cleanedStr.split('').reverse().join('');
+           
+            return cleanedStr === reversedStr;
+        }
+
+        checkBtn.addEventListener("click", () => {
+            const inputText = textContainer.value.trim();
+
+            if (inputText === "") {
+                alert("Please input a value");
+                resultText.innerText = "";
+            } else {
+                
+                if (isPalindrome(inputText)) {
+                    resultText.innerText = `${inputText} is a Palindrome`;
+                } else {
+                    resultText.innerText = `${inputText} is not a Palindrome`;
+                }
+            }
+        });
+    </script>
+    <span>&copy; David Anthony</span>
+</body>
+</html>

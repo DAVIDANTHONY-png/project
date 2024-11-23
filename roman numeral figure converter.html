@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman Numeral Converter</title>
+</head>
+<body>
+    <style>
+        body{
+            text-align: center;
+            background-color: purple;
+        }
+        input{
+            width: 250px;
+            height: 30px;
+            background-color: rgb(3, 3, 61);
+            color: white;
+            border-radius: 9px;
+        }
+        button{
+            width: 90px;
+            height: 35px;
+            background-color: orange;
+            border-radius: 5px;
+        }
+    </style>
+    <h1>Roman Numeral Converter</h1>
+    <p>by David Anthony</p>
+    <h3>Enter a number between 1 and 3999:</h3>
+    <input placeholder="please enter a number" type="number" id="number" min="1" max="3999">
+    <button id="convert-btn">Convert</button>
+    <p id="output"></p>
+    <script>
+        const numberInput = document.getElementById("number");
+        const convertBtn = document.getElementById("convert-btn");
+        const result = document.getElementById("output");
+
+        // Roman numeral conversion function
+        function toRoman(num) {
+            const romanNumerals = [
+                { value: 1000, symbol: "M" },
+                { value: 900, symbol: "CM" },
+                { value: 500, symbol: "D" },
+                { value: 400, symbol: "CD" },
+                { value: 100, symbol: "C" },
+                { value: 90, symbol: "XC" },
+                { value: 50, symbol: "L" },
+                { value: 40, symbol: "XL" },
+                { value: 10, symbol: "X" },
+                { value: 9, symbol: "IX" },
+                { value: 5, symbol: "V" },
+                { value: 4, symbol: "IV" },
+                { value: 1, symbol: "I" },
+            ];
+
+            let result = '';
+            for (const numeral of romanNumerals) {
+                while (num >= numeral.value) {
+                    result += numeral.symbol;
+                    num -= numeral.value;
+                }
+            }
+            return result;
+        }
+
+        convertBtn.addEventListener("click", () => {
+            const num = Number(numberInput.value);
+            
+            result.innerText = "";
+
+            if (isNaN(num)) {
+                alert("Please enter a valid number");
+                return;
+            }
+
+            if (num < 1 || num > 3999) {
+                result.innerText = "Please enter a number between 1 and 3999.";
+            } else {
+                result.innerText = toRoman(num);
+            }
+        });
+    </script>
+    <span>&copy; David Anthony</span>
+</body>
+</html>

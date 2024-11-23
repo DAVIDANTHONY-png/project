@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>number validator</title>
+    <link rel="stylesheet" href="number validator.css">
+</head>
+<body>
+    <style>
+        body{
+    background-color: rgb(0, 0, 22);
+    text-align: center;
+}
+h1{
+    font-size: 3rem;
+    color: white;
+}
+input{
+    width: 350px;
+    height: 30px;
+    background-color: blueviolet;
+    border-radius: 5px;
+}
+button{
+    height: 35px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: rgb(1, 1, 17);
+    color: white;
+}
+p{
+    font-size: 1.5rem;
+    color: white;
+    font-style: italic;
+    font-weight: bolder;
+}
+    </style>
+    <h1>Us Number Validator</h1>
+    <p>by David Anthony</p>
+    <input type="text" id="user-input">
+    <button id="check-btn">Check</button>
+    <button id="clear btn">Clear</button>
+    <p id="result-p"></p>
+
+    <script>
+        const userNumberInput = document.getElementById("user-input");
+        const checkBtn = document.getElementById("check-btn");
+        const clearBtn = document.getElementById("clear btn");
+        const result = document.getElementById("result-p");
+
+        checkBtn.addEventListener("click", ()=>{
+            if(userNumberInput.value === ""){
+                alert("Please provide a phone number")
+            }
+            result.textContent = usNumber(userNumberInput.value)?"Valid US Number: " + userNumberInput.value:"Invalid US Number: " + userNumberInput.value;
+            userNumberInput.value ="";
+        })
+
+        function clear(){
+            result.textContent = ""
+        }
+
+       clearBtn.addEventListener("click", clear)
+
+        const usNumber = (msg)=>validUsNumbers.some((regex)=>regex.test(msg));
+        const thirdValid = /(?:^|\s)5555555555(?:$|\s)/;
+        const fourthValid = /(?:^|\s)555-555-5555(?:$|\s)/;
+        const fifthValid = /(?:^|\s)1 (555) 555-5555(?:$|\s)/;
+        const sixValid = /(?:^|\s)1 555-555-5555(?:$|\s)/
+        const firstVal = /(?:^|\s)555-555-5555(?:$|\s)/
+        const seventhVal =/(?:^|\s)(555)555-5555(?:$|\s)/
+        const eightthVal =/(?:^|\s)1(555)555-5555(?:$|\s)/
+        const nineVal =/(?:^|\s)1 555 555 5555(?:$|\s)/
+        const tenVal =/(?:^|\s)1 456 789 4444(?:$|\s)/
+        const validUsNumbers = [thirdValid, fourthValid, fifthValid, sixValid, seventhVal, eightthVal, nineVal, tenVal]
+    </script>
+    <span style="color: white;">&copy;David Anthony</span>
+</body>
+</html>
